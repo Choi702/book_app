@@ -27,6 +27,10 @@ app.set('view engine', 'ejs');
 app.get('/hello', (request, response)=>{
   response.status(200).render('pages/index');
 })
+// search new.ejs route
+app.get('/searches', (request, response)=>{
+  response.render('pages/searches/new');
+})
 
 app.listen(PORT, () => {
   console.log(`Server is now listening on port ${PORT}`);

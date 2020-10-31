@@ -2,30 +2,30 @@
 
 
 Lab 11 EJS Feature 1
-Number and name of feature: 
+Number and name of feature: Feature 1 task 1 -6
 
 
-Estimate of time needed to complete: 
+Estimate of time needed to complete: 1hr
 
 
-Start time: 
+Start time: 1:35pm
 
 
-Finish time: 
+Finish time: 2:43pm
 
 
-Actual time needed to complete: 
+Actual time needed to complete: 1 hour 8 minutes
 
 
 
 Lab 11 EJS Feature 2
-Number and name of feature: 
+Number and name of feature: Feature 2
 
 
-Estimate of time needed to complete: 
+Estimate of time needed to complete: 1 hour
 
 
-Start time: 
+Start time: 2:44pm 
 
 
 Finish time: 
