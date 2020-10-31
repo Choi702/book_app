@@ -19,13 +19,13 @@ const app = express();
 app.use(cors());
 
 // where server look for pages for browser
-// app.use(express.static('./public'));
+app.use(express.static('./public'));
 
 //view engine
-// app.set('view engine', 'ejs');
+app.set('view engine', 'ejs');
 
-app.get('/', (request, response)=>{
-  response.status(200).send('Hello World');
+app.get('/hello', (request, response)=>{
+  response.status(200).render('pages/index');
 })
 
 app.listen(PORT, () => {
