@@ -27,6 +27,7 @@ app.use(express.urlencoded({ extended: true}));
 //view engine
 app.set('view engine', 'ejs');
 
+//routes
 app.get('/hello', (request, response)=>{
   response.status(200).render('pages/index');})
 
@@ -38,47 +39,42 @@ app.get('/searches/new', (request, response)=>{
 
 app.post('/searches', (request, response)=>{
   const search = request.body.title1;
-  const authorTitle = request.body.authorOrTitle;
-  let urlAuthorTitle = '';
-  if(authorTitle === 'title'){
-    urlAuthorTitle = `intitle:${search}`;
-
-  }else if (authorOrTitle === 'author') {
-    urlAuthorTitle = `inauthor:${search}`;
+  const authorTitle = request.body.search_query;
+  let selection = request.body.search_query;
+  if(selection === 'title'){
+    selection += `:${search}`;
+  }else {
+    selection += `:${search}`;
   }
+   
+   console.log('selection', selection);
 
-  const URL = `https://www.googleapis.com/books/v1/volumes?q=${urlAuthorTitle}`;
+  const URL = `https://www.googleapis.com/books/v1/volumes?q=${selection}`;
+ console.log('URL', URL);
   superagent.get(URL)
   .then(data => {
-    data.body.items.map(book =>{
-    new Book(book.volumeInfo);
-    })
-    .then(book => response.render('pages/searches/show', { searchResults: book })); 
+    let searchOutput = data.body.items.map(book => new Book(book) 
+    );
+    response.status(200).render('pages/searches/show',{bookSearch: searchOutput})
   }) 
+  .catch(error => {
+    console.log('error', error);
+    response.status(500).send('Your API call did not work!');
+  });
+
 })
 
 
 //constructor function for Book
 
 function Book(obj){
-  this.author = obj.authors;
-  this.title = obj.title;
-  this.description = obj.description;
-  this.image = obj.imageLinks;
-  this.isbn = obj.industryIdentifiers.type;
-  this.id = obj.id;
-  const holderImage = 'https://i.imgur.com/J5LVHEL.jpg';
-  let imageLink = '';
- if(book.volumeInfo.imageLinks){
-  imageLink = book.volumeInfo.imageLinks.thumbnail; 
- }else {
-  return new Book(book, imageLink);
- }
-  
+  this.author = (obj.volumeInfo.authors)?obj.volumeInfo.authors:"can'find route";
+  this.title = (obj.volumeInfo.title)?obj.volumeInfo.title:"can'find route";
+  this.desc = (obj.volumeInfo.description)?obj.volumeInfo.description: "can'find route";
+  this.image = (obj.volumeInfo.imageLinks.thumbnail)? obj.volumeInfo.imageLinks.thumbnail:'https://i.imgur.com/J5LVHEL.jpg';
+};
 
-}
-
-//route handler
+//Starting Server
 
 app.listen(PORT, () => {
   console.log(`Server is now listening on port ${PORT}`);
