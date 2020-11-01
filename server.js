@@ -5,7 +5,7 @@
 const express = require('express');
 const superagent = require('superagent');
 const cors = require('cors');
-const { response, urlencoded } = require('express');
+
 
 require('dotenv').config();
 
@@ -21,18 +21,22 @@ app.use(cors());
 // where server look for pages for browser
 app.use(express.static('./public'));
 
+//decode Post Data
+app.use(express.urlencoded({ extended: true}));
+
 //view engine
 app.set('view engine', 'ejs');
 
 app.get('/hello', (request, response)=>{
   response.status(200).render('pages/index');})
+
 // search new.ejs route
 app.get('/searches/new', (request, response)=>{
   response.render('pages/searches/new');
 })
 
 
-app.post('/searches/new', (request, response)=>{
+app.post('/searches', (request, response)=>{
   const search = request.body.title1;
   const authorTitle = request.body.authorOrTitle;
   let urlAuthorTitle = '';
@@ -64,13 +68,14 @@ function Book(obj){
   this.isbn = obj.industryIdentifiers.type;
   this.id = obj.id;
   const holderImage = 'https://i.imgur.com/J5LVHEL.jpg';
-
-  // if(){
-  //   imageLink = newBook.volumeInfo.bookApi.thumbnail;
+  let imageLink = '';
+ if(book.volumeInfo.imageLinks){
+  imageLink = book.volumeInfo.imageLinks.thumbnail; 
+ }else {
+  return new Book(book, imageLink);
+ }
   
-  // }else {
-  //   bookApi = 
-  // }
+
 }
 
 //route handler

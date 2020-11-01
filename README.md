@@ -1,5 +1,7 @@
 # book_app
 
+Contributor for this Lab11
+Klace Koch navigated while Jae Choi drove for this lab assignment
 
 Lab 11 EJS Feature 1
 Number and name of feature: Feature 1 task 1 -6
