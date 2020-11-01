@@ -3,6 +3,7 @@
 Contributor for this Lab11
 Klace Koch navigated while Jae Choi drove for this lab assignment
 
+"Big shout out to Brandon Gonzalez for helping with feature 3, the last part in rendering. We were missing minor code and some syntax error and he helped correct those issue to get feature 3 rendering working"
 
 Lab 11 EJS Feature 1
 Number and name of feature: Feature 1 task 1 -6
