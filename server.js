@@ -29,13 +29,20 @@ app.set('view engine', 'ejs');
 
 //routes
 app.get('/hello', (request, response)=>{
-  response.status(200).render('pages/index');})
+  response.status(200).render('pages/index');});
+
+app.get('/error', errorHandler);
+
+function errorHandler(request, response, error){
+  response.status(500).render('pages/error');
+  console.log('Error - on server.js');
+}
+
 
 // search new.ejs route
 app.get('/searches/new', (request, response)=>{
   response.render('pages/searches/new');
-})
-
+});
 
 app.post('/searches', (request, response)=>{
   const search = request.body.title1;
@@ -46,23 +53,22 @@ app.post('/searches', (request, response)=>{
   }else {
     selection += `:${search}`;
   }
-   
-   console.log('selection', selection);
+  console.log('selection', selection);
 
   const URL = `https://www.googleapis.com/books/v1/volumes?q=${selection}`;
- console.log('URL', URL);
+  console.log('URL', URL);
   superagent.get(URL)
-  .then(data => {
-    let searchOutput = data.body.items.map(book => new Book(book) 
-    );
-    response.status(200).render('pages/searches/show',{bookSearch: searchOutput})
-  }) 
-  .catch(error => {
-    console.log('error', error);
-    response.status(500).send('Your API call did not work!');
-  });
+    .then(data => {
+      let searchOutput = data.body.items.map(book => new Book(book) 
+      );
+      response.status(200).render('pages/searches/show',{bookSearch: searchOutput})
+    })
+    .catch(error => {
+      console.log('error', error);
+      response.status(500).send('Your API call did not work!');
+    });
 
-})
+});
 
 
 //constructor function for Book
@@ -72,7 +78,7 @@ function Book(obj){
   this.title = (obj.volumeInfo.title)?obj.volumeInfo.title:"can'find route";
   this.desc = (obj.volumeInfo.description)?obj.volumeInfo.description: "can'find route";
   this.image = (obj.volumeInfo.imageLinks.thumbnail)? obj.volumeInfo.imageLinks.thumbnail:'https://i.imgur.com/J5LVHEL.jpg';
-};
+}
 
 //Starting Server
 
