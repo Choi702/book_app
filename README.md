@@ -51,15 +51,15 @@ Actual time needed to complete: 5 hours
 
 
 Lab 11 EJS Feature 4
-Number and name of feature:
+Number and name of feature: Feature 4...Errors
 
-Estimate of time needed to complete: 
+Estimate of time needed to complete: 1 hrs
 
-Start time: 
+Start time: 1552
 
-Finish time: 
+Finish time: 1617
 
-Actual time needed to complete: 
+Actual time needed to complete:  30min
 
 
 
