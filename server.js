@@ -35,7 +35,7 @@ app.get('/error', errorHandler);
 
 function errorHandler(request, response, error){
   response.status(500).render('pages/error');
-  console.log('Error - on server.js');
+  console.log('Watching for errors on server.js');
 }
 
 
@@ -59,17 +59,15 @@ app.post('/searches', (request, response)=>{
   console.log('URL', URL);
   superagent.get(URL)
     .then(data => {
-      let searchOutput = data.body.items.map(book => new Book(book) 
+      let searchOutput = data.body.items.map(book => new Book(book)
       );
-      response.status(200).render('pages/searches/show',{bookSearch: searchOutput})
+      response.status(200).render('pages/searches/show',{bookSearch: searchOutput});
     })
     .catch(error => {
-      console.log('error', error);
-      response.status(500).send('Your API call did not work!');
+      response.status(500).render('pages/error');
     });
 
 });
-
 
 //constructor function for Book
 

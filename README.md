@@ -4,7 +4,18 @@ Contributor for this Lab11
 Klace Koch navigated while Jae Choi drove for this lab assignment
 
 "Big shout out to Brandon Gonzalez for helping with feature 3, the last part in rendering. We were missing minor code and some syntax error and he helped correct those issue to get feature 3 rendering working"
+---------------------------------------
+STYLE GUIDE:
+Created using https://coolors.co/0d1321-bf3100-79745c-ffb30f
 
+/* CSS HEX */
+--rich-black-fogra-29: #0d1321ff;
+--rust: #bf3100ff;
+--eggshell: #f8f4e3ff;
+--ochre: #df7208ff;
+--honey-yellow: #ffb30fff;
+
+-----------------------------------------
 Lab 11 EJS Feature 1
 Number and name of feature: Feature 1 task 1 -6
 
@@ -64,15 +75,15 @@ Actual time needed to complete:  30min
 
 
 Lab 11 EJS Feature 5
-Number and name of feature:
+Number and name of feature: Styling
 
-Estimate of time needed to complete: 
+Estimate of time needed to complete: 1hr
 
-Start time: 
+Start time: 1617
 
-Finish time: 
+Finish time: 1733
 
-Actual time needed to complete: 
+Actual time needed to complete: 1hr 16 - not done
 
 
 

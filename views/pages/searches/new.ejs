@@ -8,17 +8,19 @@
 </head>
 
 <body>
+  <header>Best Books!</header>
   <form action="/searches" method="POST">
     <fieldset>
-      <legend>Search By Title or Author</legend>
+      <legend>Search By
+        <br>    
+        <label for="title">Title</label>
+        <input id= "title" type="radio" value = "title" name="search_query">
+        <label for="author">Author</label>
+        <input id= "author" type="radio" value = "author" name="search_query"> 
+        </legend>
       <label> 
-        <input type="text" name = "title1" placeholder="Search.." name= "title1">
+        <input type="text" name = "title1" placeholder="Search..." name= "title1">
       </label>
-
-      <label for="title">Title</label>
-      <input id= "title" type="radio" value = "title" name="search_query">
-      <label for="author">Author</label>
-      <input id= "author" type="radio" value = "author" name="search_query"> 
       <br>
       <button>Search the Google Books API</button>
     </fieldset>
