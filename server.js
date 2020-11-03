@@ -5,6 +5,7 @@
 const express = require('express');
 const superagent = require('superagent');
 const cors = require('cors');
+const { request, response } = require('express');
 
 
 require('dotenv').config();
@@ -27,17 +28,18 @@ app.use(express.urlencoded({ extended: true}));
 //view engine
 app.set('view engine', 'ejs');
 
-//routes
-app.get('/hello', (request, response)=>{
-  response.status(200).render('pages/index');});
-
+//ROUTES
 app.get('/error', errorHandler);
+app.get('/', homeHandler);
 
+// ROUTE HANDLERS
 function errorHandler(request, response, error){
   response.status(500).render('pages/error');
   console.log('Watching for errors on server.js');
 }
-
+function homeHandler(request, response){
+  response.status(200).render('pages/index');
+}
 
 // search new.ejs route
 app.get('/searches/new', (request, response)=>{

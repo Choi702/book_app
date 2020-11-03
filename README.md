@@ -88,15 +88,15 @@ Actual time needed to complete: 1hr 16 - not done
 
 
 Lab 11 EJS Feature 6
-Number and name of feature:
+Number and name of feature: Home Route
 
-Estimate of time needed to complete: 
+Estimate of time needed to complete: 1 hr
 
-Start time: 
+Start time: 1733
 
-Finish time: 
+Finish time: 1744
 
-Actual time needed to complete: 
+Actual time needed to complete: 11min
 
 -----------------------------------------------------------------
 
