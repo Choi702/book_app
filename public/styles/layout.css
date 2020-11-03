@@ -1,3 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap');
+html {
+    color: #DF7208;
+}
 body {
-  background-color: beige;
+    background-color: #F8F4E3;
+}
+form {
+    background-color: #0D1321;
+    border: #FFB30F 5px solid;
 }
