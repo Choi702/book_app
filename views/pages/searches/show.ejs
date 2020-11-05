@@ -8,13 +8,13 @@
 </head>
 
 <body>
-  <hl>Results</hl>
+  <header><h1>Best Books!</h1></header>
   <%bookSearch.forEach(book =>{ %>
-    <div>
-      <img src="<%= book.image%>">
-      <li><%=book.title%></li>
+    <div class="searchedFlex">
+      <h2><%=book.title%></h2>
       <li><%=book.author%></li>
-      <li><%=book.desc%></li>
+      <img src="<%= book.image%>">
+      <p><%=book.desc%></p>
     </div>
   <% }) %>
 </body>

@@ -2,17 +2,32 @@
 html {
     box-sizing: border-box;
     font-family: 'Ubuntu', sans-serif;
-    font-size: 20px;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    /* filter: invert(1); */
 }
 body {
-    width: 400px;
+    width: 30em;
 }
 form {
-    height: 100px;
+    height: 6.25em;
 }
 fieldset {
     text-align: center;
 }
 header {
+    font-size: 2.5em;
+}
+img {
+    padding: 5px;
+}
+h2{
+    color: #FFB30F;
+    font-size: 1.5em;
+
+}
+.searchedFlex{
     text-align: center;
+    padding: 5px;
 }
