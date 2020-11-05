@@ -8,24 +8,25 @@
 </head>
 
 <body>
-  <header>Best Books!</header>
-  <form action="/searches" method="POST">
-    <fieldset>
-      <legend>Search By
-        <br>    
-        <label for="title">Title</label>
-        <input id= "title" type="radio" value = "title" name="search_query">
-        <label for="author">Author</label>
-        <input id= "author" type="radio" value = "author" name="search_query"> 
+  <div class="flexboxBody">
+   <header><h1>Best Books!</h1></header>
+    <form action="/searches" method="POST">
+      <fieldset>
+        <legend>Search By
+          <br>    
+          <label for="title">Title</label>
+          <input id= "title" type="radio" value = "title" name="search_query">
+          <label for="author">Author</label>
+          <input id= "author" type="radio" value = "author" name="search_query"> 
         </legend>
-      <label> 
-        <input type="text" name = "title1" placeholder="Search..." name= "title1">
-      </label>
-      <br>
-      <button>Search the Google Books API</button>
-    </fieldset>
-  </form>
-
+        <label> 
+          <input type="text" name = "title1" placeholder="Search..." name= "title1">
+        </label>
+        <br>
+        <button>Search the Google Books API</button>
+      </fieldset>
+    </form>    
+  </div>
 </body>
 
 </html>

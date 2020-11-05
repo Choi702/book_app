@@ -1,11 +1,71 @@
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap');
 html {
-    color: #DF7208;
+   background-color: #f8f4e3ff;
 }
 body {
-    background-color: #F8F4E3;
+    background-color: #0d1321ff;
 }
 form {
-    background-color: #0D1321;
-    border: #FFB30F 5px solid;
+    background-color: #FFB30F;
+}
+fieldset {
+    background-color: #f8f4e3;
+}
+header {
+    background-color: #BF3100;
+}
+h1{
+    color: #f8f4e3;
+    background-color: #BF3100;
+}
+p {
+    color: #FFB30F;
+}
+.searchedFlex{
+    border: 2px dashed #79745C;
+}
+img {
+    border: #BF3100 solid 3px;
+}
+h2{
+    color: #FFB30F;
+}
+li {
+    color: #f8f4e3;
+}
+
+@media only screen and (min-width: 680px){
+    @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap');
+html {
+    box-sizing: border-box;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    /* filter: invert(1); */
+}
+body {
+    width: 100%;
+    /* background-color: aqua; */
+}
+form {
+    height: 6.25em;
+}
+fieldset {
+    text-align: center;
+}
+header {
+    font-size: 2.5em;
+}
+img {
+    padding: 5px;
+}
+h2{
+    color: #FFB30F;
+    font-size: 1.5em;
+
+}
+.searchedFlex{
+    text-align: center;
+    padding: 5px;
+}
 }
