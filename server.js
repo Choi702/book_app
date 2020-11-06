@@ -6,7 +6,7 @@ const express = require('express');
 const superagent = require('superagent');
 const cors = require('cors');
 const { request, response } = require('express');
-
+const pg = require('pg');
 
 require('dotenv').config();
 
@@ -24,6 +24,11 @@ app.use(express.static('./public'));
 
 //decode Post Data
 app.use(express.urlencoded({ extended: true}));
+
+//connect to our database
+const client = new pg.Client(process.env.DATABASE_URL);
+client.connect();
+client.on('error', err => console.error(err));
 
 //view engine
 app.set('view engine', 'ejs');
@@ -85,3 +90,10 @@ function Book(obj){
 app.listen(PORT, () => {
   console.log(`Server is now listening on port ${PORT}`);
 });
+
+// app.get('/new', getForm);
+
+// function getForm(request, response){
+
+
+// }

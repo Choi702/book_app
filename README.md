@@ -44,7 +44,7 @@ Actual time needed to complete:  56 minutes
 Lab 11 EJS Feature 3
 10/31/2020
 11/1/2020
-Number and name of feature: Feature 3
+Number and name of feature: Feature 3 rendering
 
 Estimate of time needed to complete: 1 hours
 
@@ -100,22 +100,82 @@ Actual time needed to complete: 11min
 
 -----------------------------------------------------------------
 
+Lab 12 Feature 1
+Number and name of feature:
+
+Estimate of time needed to complete: 
+
+Start time: 
+
+Finish time: 
+
+Actual time needed to complete: 
+
+
+Number and name of feature:
+
+Estimate of time needed to complete: 
+
+Start time: 
+
+Finish time: 
+
+Actual time needed to complete: 
+
+
+Number and name of feature:
+
+Estimate of time needed to complete: 
+
+Start time: 
+
+Finish time: 
+
+Actual time needed to complete: 
+
+
+Number and name of feature:
+
+Estimate of time needed to complete: 
+
+Start time: 
+
+Finish time: 
+
+Actual time needed to complete: 
+
+
+Number and name of feature:
+
+Estimate of time needed to complete: 
+
+Start time: 
+
+Finish time: 
+
+Actual time needed to complete: 
+
+
+Number and name of feature:
+
+Estimate of time needed to complete: 
+
+Start time: 
+
+Finish time: 
+
+Actual time needed to complete: 
 
 
 
 Number and name of feature:
 
-
 Estimate of time needed to complete: 
-
 
 Start time: 
 
-
 Finish time: 
 
-
 Actual time needed to complete: 
-
 
 
