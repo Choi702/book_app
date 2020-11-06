@@ -109,7 +109,8 @@ Estimate of time needed to complete: 1 hour
 
 Start time: 7:00pm
 
-Finish time: 9:30pm not complete
+Finish time: 9:30pm not complete feature 1
+will continue tomorrow
 
 Actual time needed to complete: 
 
