@@ -99,15 +99,18 @@ Finish time: 1744
 Actual time needed to complete: 11min
 
 -----------------------------------------------------------------
+created schema file called books.sql
+created seed.sql and added 2 books 
 
 Lab 12 Feature 1
-Number and name of feature:
+Number and name of feature: DB and refactor
 
-Estimate of time needed to complete: 
+Estimate of time needed to complete: 1 hour
 
-Start time: 
+Start time: 7:00pm
 
-Finish time: 
+Finish time: 9:30pm not complete feature 1
+will continue tomorrow
 
 Actual time needed to complete: 
 
