@@ -35,7 +35,16 @@ app.set('view engine', 'ejs');
 
 //ROUTES
 app.get('/error', errorHandler);
-app.get('/', homeHandler);
+// app.get('/', homeHandler);
+app.get('/', (request, response) =>{
+  const sqlTable = ('SELECT * FROM books_app');
+  client.query(sqlTable)
+  .then(results => {
+    response.render('/pages/index', {potato: results.row});
+  })
+  .catch(error => {
+    errorHandler(error, response);
+  })
 
 // ROUTE HANDLERS
 function errorHandler(request, response, error){
