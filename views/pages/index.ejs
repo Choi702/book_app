@@ -1,32 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EJS Example</title>
+  <title>books app</title>
   <link rel="stylesheet" href="/styles/style.css">
- 
+
 </head>
 
 <body>
-  <h2> Hello</h2>
+  <h2> Hello World</h2>
   <p>Under Construction</p>
-<section>
-  <div>author</div>
-  <div>title</div>
-  <div>isdn</div>
-  <div>image_url</div>
-  
+  <header><a href="/"> Best Books! </a></header>
+  <section>
 
-  <ul>
-   <% potato.forEach(potato => { %>
-    <li>
-      <h4>potato: <%= potato.author %></h4>
-
-    </li>
-  <% }) %>
-  </ul>
-</section>
+    <ul>
+      <% results.forEach(book => { %>
+      <li>
+        <h4>book: <%= book.title %></h4>
+        <h3>book: <%= book.author %></h3>
+        <p>book: <%= book.isbn %></p>
+        <p>book: <%= book.image_url %></p>
+        <p>book: <%= book.description %></p>
+      </li>
+    <% }) %>
+    </ul>
+  </section>
 
 </body>
 
