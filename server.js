@@ -1,6 +1,8 @@
 'use strict'
 
-//bring in our dependencies
+require('dotenv').config();  //first
+
+//bring in our dependencies   //second
 
 const express = require('express');
 const superagent = require('superagent');
@@ -8,11 +10,9 @@ const cors = require('cors');
 const { request, response } = require('express');
 const pg = require('pg');
 
-require('dotenv').config();
 
 
-//create our Port
-
+//create our Port 
 const PORT = process.env.PORT || 3000;
 
 //start express application
@@ -22,37 +22,42 @@ app.use(cors());
 // where server look for pages for browser
 app.use(express.static('./public'));
 
+//view engine
+app.set('view engine', 'ejs');
+
 //decode Post Data
 app.use(express.urlencoded({ extended: true}));
+
+
 
 //connect to our database
 const client = new pg.Client(process.env.DATABASE_URL);
 client.connect();
 client.on('error', err => console.error(err));
 
-//view engine
-app.set('view engine', 'ejs');
 
 //ROUTES
 app.get('/error', errorHandler);
-// app.get('/', homeHandler);
-app.get('/', (request, response) =>{
-  const sqlTable = ('SELECT * FROM books_app');
-  client.query(sqlTable)
-  .then(results => {
-    response.render('/pages/index', {potato: results.row});
-  })
-  .catch(error => {
-    errorHandler(error, response);
-  })
+app.get('/', homeHandler);
+
 
 // ROUTE HANDLERS
 function errorHandler(request, response, error){
   response.status(500).render('pages/error');
   console.log('Watching for errors on server.js');
 }
+
 function homeHandler(request, response){
-  response.status(200).render('pages/index');
+const sql = 'SELECT * FROM books;'; 
+client.query(sql)
+.then(results =>{
+let bookQuery = results.rows
+response.render('pages/index.ejs',{results: bookQuery});
+})
+.catch(error => {
+  console.log(error);
+});
+
 }
 
 // search new.ejs route
@@ -102,7 +107,7 @@ app.listen(PORT, () => {
 
 // app.get('/new', getForm);
 
-// function getForm(request, response){
+// function getForm(request, response) =>{
 
 
 // }
