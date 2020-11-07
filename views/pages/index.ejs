@@ -12,15 +12,13 @@
 <body>
   <header><a href="/">Best Books!</a></header>
   <section>
+    <div><%=results.length %></div>
     <ul>
-      <div><%=results.length %></div>
       <% results.forEach(book => { %>
       <li>
         <h2>book: <%= book.title %></h2>
         <h3>book: <%= book.author %></h3>
-        <p>book: <%= book.isbn %></p>
         <p>book: <%= book.image_url %></p>
-        <p>book: <%= book.description %></p>
       </li>
       <% }) %>
     </ul>

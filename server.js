@@ -50,9 +50,9 @@ function errorHandler(request, response, error){
 function homeHandler(request, response){
 const sql = 'SELECT * FROM books;'; 
 client.query(sql)
-.then(results =>{
-let bookQuery = results.rows
-response.render('pages/index.ejs',{results: bookQuery});
+.then(results => {
+let bookQuery = results.rows;
+response.render('pages/index', { results: bookQuery });
 })
 .catch(error => {
   console.log(error);
