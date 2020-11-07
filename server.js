@@ -46,7 +46,7 @@ function errorHandler(request, response, error){
   response.status(500).render('pages/error');
   console.log('Watching for errors on server.js');
 }
-
+//refactored route
 function homeHandler(request, response){
 const sql = 'SELECT * FROM books;'; 
 client.query(sql)
