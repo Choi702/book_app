@@ -10,27 +10,17 @@
 </head>
 
 <body>
-
-  <h2> Hello World</h2>
-
-  <header>Best Books!</header>
-
-  <h1> Hello</h1>
-
-  <p>Under Construction</p>
-  <header><a href="/"> Best Books! </a></header>
+  <header><a href="/">Best Books!</a></header>
   <section>
-
+    <div><%=results.length %></div>
     <ul>
       <% results.forEach(book => { %>
       <li>
-        <h4>book: <%= book.title %></h4>
+        <h2>book: <%= book.title %></h2>
         <h3>book: <%= book.author %></h3>
-        <p>book: <%= book.isbn %></p>
         <p>book: <%= book.image_url %></p>
-        <p>book: <%= book.description %></p>
       </li>
-    <% }) %>
+      <% }) %>
     </ul>
   </section>
 

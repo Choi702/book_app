@@ -46,13 +46,13 @@ function errorHandler(request, response, error){
   response.status(500).render('pages/error');
   console.log('Watching for errors on server.js');
 }
-
+//refactored route
 function homeHandler(request, response){
 const sql = 'SELECT * FROM books;'; 
 client.query(sql)
-.then(results =>{
-let bookQuery = results.rows
-response.render('pages/index.ejs',{results: bookQuery});
+.then(results => {
+let bookQuery = results.rows;
+response.render('pages/index', { results: bookQuery });
 })
 .catch(error => {
   console.log(error);
