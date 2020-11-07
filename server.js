@@ -39,6 +39,8 @@ client.on('error', err => console.error(err));
 //ROUTES
 app.get('/error', errorHandler);
 app.get('/', homeHandler);
+app.get('/books/:id')
+
 
 
 // ROUTE HANDLERS
