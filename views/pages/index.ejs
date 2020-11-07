@@ -13,7 +13,7 @@
   <header><a href="/"> Best Books! </a></header>
   <section>
     <ul>
-      <div><%=results.length %></div>
+      <div><%=results.length %> Saved Books</div>
       <% results.forEach(book => { %>
       <li>
       <img src="<%= book.img%>"> 
@@ -21,6 +21,7 @@
         <h3><%= book.author %></h3>
         <p><%= book.description %></p>
       </li>
+      <a href="/books/<%=book%>">Show Details</a>
       <% }) %>
     </ul>
   </section>
