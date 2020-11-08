@@ -1,9 +1,10 @@
-<% books.forEach(book => { %>
+<%- include('../book/searches/show', {book: book})%>
 <section>
   <h1><%= book.title %></h1>
   <h2><%= book.rows %></h2>
   <h3><%= book.author %></h3>
   <p><%= book.description %></p>
   <p><%= book.isbn %></p>
+  <!-- <p><%= book.bookshelf %></p> -->
+  <img src="<%= book.image_url%>">
 </section>
-<% }) %>

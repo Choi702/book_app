@@ -39,8 +39,8 @@ client.on('error', err => console.error(err));
 //ROUTES
 app.get('/error', errorHandler);
 app.get('/', homeHandler);
-app.get('/books/:id', viewHandler);
-
+// app.get('/books/:id', viewHandler);
+app.get('/books/:id', singleHandler);
 
 
 // ROUTE HANDLERS
@@ -50,16 +50,15 @@ function errorHandler(request, response, error){
 }
 //refactored route
 function homeHandler(request, response){
-const sql = 'SELECT * FROM books;'; 
-client.query(sql)
-.then(results => {
-let bookQuery = results.rows;
-response.render('pages/index.ejs', { results: bookQuery });
+  const sql = 'SELECT * FROM books;'; 
+  client.query(sql)
+  .then(results => {
+  let bookQuery = results.rows;
+  response.render('pages/index.ejs', { results: bookQuery });
 })
-.catch(error => {
+  .catch(error => {
   console.log(error);
 });
-
 }
 
 function viewHandler(request, response){
@@ -71,9 +70,19 @@ function viewHandler(request, response){
   })
   .catch(error => {
     console.log(error);
-  });
-  
-  }
+  });  
+}
+
+function singleHandler(request, response) {
+  client.query(`SELECT * FROM books WHERE id = ${request.params.id}`) 
+  .then(results =>{
+    console.log('results.rows[0]', results.rows[0]);
+    response.render('pages/book/details', {book: results.rows[0]});
+  })
+}
+
+
+
 // search new.ejs route
 app.get('/searches/new', (request, response)=>{
   response.render('pages/searches/new');
