@@ -1,10 +1,10 @@
-<%- include('../book/searches/show', {book: book})%>
+
 <section>
-  <h1><%= book.title %></h1>
-  <h2><%= book.rows %></h2>
+  <img src="<%= book.img%>">
+    <h1><%= book.title %></h1>
   <h3><%= book.author %></h3>
-  <p><%= book.description %></p>
+  <h2><%= book.rows %></h2>
+  <p><%= book.descrip %></p>
   <p><%= book.isbn %></p>
   <!-- <p><%= book.bookshelf %></p> -->
-  <img src="<%= book.image_url%>">
 </section>
