@@ -39,8 +39,8 @@ client.on('error', err => console.error(err));
 //ROUTES
 app.get('/error', errorHandler);
 app.get('/', homeHandler);
-// app.get('/books/:id', viewHandler);
-app.get('/books/:id', singleHandler);
+app.get('/books/:id', viewHandler);
+
 
 
 // ROUTE HANDLERS
@@ -54,7 +54,7 @@ function homeHandler(request, response){
   client.query(sql)
   .then(results => {
   let bookQuery = results.rows;
-  response.render('pages/index.ejs', { results: bookQuery });
+  response.render('pages/index.ejs', { books: bookQuery });
 })
   .catch(error => {
   console.log(error);
@@ -66,20 +66,14 @@ function viewHandler(request, response){
   client.query(sqlView)
   .then(results => {
   let bookView = results.rows[0];
-  response.render('pages/book/details', { books: [bookView] });
+  response.render('pages/searches/detail', { books: [bookView] });
   })
   .catch(error => {
     console.log(error);
   });  
 }
 
-function singleHandler(request, response) {
-  client.query(`SELECT * FROM books WHERE id = ${request.params.id}`) 
-  .then(results =>{
-    console.log('results.rows[0]', results.rows[0]);
-    response.render('pages/book/details', {book: results.rows[0]});
-  })
-}
+
 
 
 
@@ -97,7 +91,7 @@ app.post('/searches', (request, response)=>{
   }else {
     selection += `:${search}`;
   }
-  console.log('selection', selection);
+  // console.log('selection', selection);
 
   const URL = `https://www.googleapis.com/books/v1/volumes?q=${selection}`;
   console.log('URL', URL);
@@ -105,7 +99,8 @@ app.post('/searches', (request, response)=>{
     .then(data => {
       let searchOutput = data.body.items.map(book => new Book(book)
       );
-      response.status(200).render('pages/searches/show',{bookSearch: searchOutput});
+      // console.log('searchOutput', searchOutput);
+      response.status(200).render('pages/searches/show',{books: searchOutput});
     })
     .catch(error => {
       response.status(500).render('pages/error');
@@ -118,8 +113,8 @@ app.post('/searches', (request, response)=>{
 function Book(obj){
   this.author = (obj.volumeInfo.authors)?obj.volumeInfo.authors:"can'find route";
   this.title = (obj.volumeInfo.title)?obj.volumeInfo.title:"can'find route";
-  this.desc = (obj.volumeInfo.description)?obj.volumeInfo.description: "can'find route";
-  this.image = (obj.volumeInfo.imageLinks.thumbnail)? obj.volumeInfo.imageLinks.thumbnail:'https://i.imgur.com/J5LVHEL.jpg';
+  this.descrip = (obj.volumeInfo.description)?obj.volumeInfo.description: "can'find route";
+  this.img = (obj.volumeInfo.imageLinks.thumbnail)? obj.volumeInfo.imageLinks.thumbnail:'https://i.imgur.com/J5LVHEL.jpg';
 }
 
 //Starting Server
