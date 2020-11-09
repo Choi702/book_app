@@ -62,6 +62,7 @@ Actual time needed to complete: 5 hours
 
 
 Lab 11 EJS Feature 4
+11/2
 Number and name of feature: Feature 4...Errors
 
 Estimate of time needed to complete: 1 hrs
@@ -98,11 +99,18 @@ Finish time: 1744
 
 Actual time needed to complete: 11min
 
+
 -----------------------------------------------------------------
+
+
+
+Big shout to Brandon Gonzales and Ron(TA)for assisting us to understand what we needed to do.
+We almost got it done by ourselves but needs extra eyes to see where the issues were
+
 created schema file called books.sql
 created seed.sql and added 2 books 
 
-Lab 12 Feature 1
+Lab 12 Feature 1 11/5
 Number and name of feature: DB and refactor
 
 Estimate of time needed to complete: 1 hour
@@ -112,51 +120,62 @@ Start time: 7:00pm
 Finish time: 9:30pm not complete feature 1
 will continue tomorrow
 
-Actual time needed to complete: 
+Actual time needed to complete: 2 hour 30 minutes not finished
 
 
-Number and name of feature:
 
-Estimate of time needed to complete: 
+Lab 12 Feature 1  still 11/6
 
-Start time: 
+Number and name of feature: DB refactor
 
-Finish time: 
+Estimate of time needed to complete: 2 hours
 
-Actual time needed to complete: 
+Start time: 10:00am
 
+Finish time: 4:30pm
 
-Number and name of feature:
-
-Estimate of time needed to complete: 
-
-Start time: 
-
-Finish time: 
-
-Actual time needed to complete: 
+Actual time needed to complete: 6hr 30 minutes
 
 
-Number and name of feature:
 
-Estimate of time needed to complete: 
+Lab 12 Feature 2 11/7 
+Number and name of feature: Feature 2--views
 
-Start time: 
+Estimate of time needed to complete: 2 hours
 
-Finish time: 
+Start time: 1pm
 
-Actual time needed to complete: 
+Finish time: 5:30pm
+
+Actual time needed to complete: 4hr 30 minutes not complete
 
 
-Number and name of feature:
 
-Estimate of time needed to complete: 
+Lab 12 feature 2 11/8 
+Number and name of feature: feature 2 - views
 
-Start time: 
+Estimate of time needed to complete: 2 hours
 
-Finish time: 
+Start time: 12pm 
 
-Actual time needed to complete: 
+Finish time: 5pm
+
+Actual time needed to complete: 5 hours feature 2 complete
+
+
+
+Lab 12 feature 3 11/8 
+Number and name of feature: feature 3 forms for views
+
+Estimate of time needed to complete: 2 hours
+
+Start time: 5:30pm
+
+Finish time: 6:50pm
+
+Actual time needed to complete: not done with feature 3
+
+
 
 
 Number and name of feature:
