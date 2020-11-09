@@ -15,6 +15,12 @@
   <% books.forEach(book => { %>
   <%- include('../book/details', {book: book}) %>
   <% }) %>
+
+  <form action="/searches/" method="POST">
+    <fieldset>
+      <button>Add Book</button>
+  </form>
+  </fieldset>
 </body>
 
 

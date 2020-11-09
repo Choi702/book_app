@@ -16,7 +16,6 @@
       <div><%=books.length %> Saved Books</div>
       <% books.forEach(book => { %>
       <%- include('./book/details', {book: book}) %>
-      <% console.log('book', book); %>
       <a href="/books/<%=book.id%>">Show Details</a>
       <% }) %>
     </ul>
