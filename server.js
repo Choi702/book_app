@@ -9,56 +9,35 @@ const { request, response } = require('express');
 const pg = require('pg');
 
 // ENVIRONMENT
+//
 require('dotenv').config();
 
 // CREATE PORT
+//
 const PORT = process.env.PORT || 3000;
 
 // APPLICATION SETUP
+//
 const app = express();
 app.use(cors());
-
-// where server look for pages for browser
 app.use(express.static('./public'));
-
-//view engine
 app.set('view engine', 'ejs');
-
-//decode Post Data
 app.use(express.urlencoded({ extended: true }));
 
 
-
-//connect to our database
-// const client = new pg.Client(process.env.DATABASE_URL);
-
-const client = new pg.Client({
-  host: 'localhost',
-  port: 5432,
-  user: 'klace',
-  password: 'gen2klr',
-  database: 'books'
-});
-
+//CONNECT TO DATABASE*
+const client = new pg.Client(process.env.DATABASE_URL);
+//
 client.connect();
 client.on('error', err => console.error(err));
 
 
-//ROUTES
-app.get('/', homeHandler);
+//ROUTES and their CALLBACKS
+//
 app.get('/error', errorHandler);
-app.get('/books/:id', viewHandler);
-app.post('/books', addBookHandler);
 
-
-
-// ROUTE HANDLERS
-function errorHandler(request, response, error) {
-  response.status(500).render('pages/error');
-  console.log('Watching for errors on server.js');
-}
-
-function homeHandler(request, response) {
+app.get('/', (request, response) => {
+  // *********** home route being handled by errors currently - error handling route wasn't correct before refactoring to callbacks
   const sql = 'SELECT * FROM books;';
   client.query(sql)
     .then(results => {
@@ -66,19 +45,13 @@ function homeHandler(request, response) {
       response.render('pages/index', { books: bookQuery });
     })
     .catch(error => {errorHandler(request, response, error);});
-}
+});
 
-function viewHandler(request, response) {
-  const sqlView = `SELECT * FROM books WHERE id = ${request.params.id}`;
-  client.query(sqlView)
-    .then(results => {
-      let bookView = results.rows[0];
-      response.render('pages/searches/detail', { books: [bookView] });
-    })
-    .catch(error => {errorHandler(request, response, error);});
-}
+app.get('/searches/new', (request, response) => {
+  response.render('pages/searches/new');
+});
 
-function addBookHandler(request, response) {
+app.post('/books', (request, response) => {
   const sqlAdd = `INSERT INTO books (author, title, isbn, img, descrip) VALUES ($1, $2, $3, $4, $5) RETURNING *`;
   const params = [request.body.author, request.body.title, request.body.isbn, request.body.img, request.body.descrip];
   console.log('params', params);
@@ -88,15 +61,19 @@ function addBookHandler(request, response) {
       response.redirect(`/books/${addBook}`);
     })
     .catch(error => {errorHandler(request, response, error);});
-}
-
-
-// search new.ejs route
-app.get('/searches/new', (request, response) => {
-  response.render('pages/searches/new');
 });
 
-app.post('/searches', (request, response) => {
+app.get('/books/:id', (request, response) => {
+  const sqlView = `SELECT * FROM books WHERE id = ${request.params.id}`;
+  client.query(sqlView)
+    .then(results => {
+      let bookView = results.rows[0];
+      response.render('pages/searches/detail', { books: [bookView] });
+    })
+    .catch(error => {errorHandler(request, response, error);});
+});
+
+app.post('/searches/new', (request, response) => {
   const search = request.body.title1;
   const authorTitle = request.body.search_query;
   let selection = request.body.search_query;
@@ -112,14 +89,20 @@ app.post('/searches', (request, response) => {
     .then(data => {
       let searchOutput = data.body.items.map(book => new Book(book)
       );
-      // console.log('searchOutput', searchOutput);
       response.status(200).render('pages/searches/show', { books: searchOutput });
     })
     .catch(error => {errorHandler(request, response, error);});
 });
 
-//constructor function for Book
 
+// ERROR HANDLER
+//
+function errorHandler(request, response, error) {
+  response.status(500).render('pages/error');
+}
+
+// CONSTRUCTOR
+//
 function Book(obj) {
   this.author = (obj.volumeInfo.authors) ? obj.volumeInfo.authors : "can'find route";
   this.title = (obj.volumeInfo.title) ? obj.volumeInfo.title : "can'find route";
@@ -127,9 +110,8 @@ function Book(obj) {
   this.img = (obj.volumeInfo.imageLinks.thumbnail) ? obj.volumeInfo.imageLinks.thumbnail : 'https://i.imgur.com/J5LVHEL.jpg';
 }
 
-//Starting Server
-
+//START SERVER
+//
 app.listen(PORT, () => {
   console.log(`Server is now listening on port ${PORT}`);
 });
-
