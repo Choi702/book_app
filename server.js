@@ -39,7 +39,7 @@ client.on('error', err => console.error(err));
 app.get('/error', errorHandler);
 app.get('/', homeHandler);
 app.get('/books/:id', viewHandler);
-app.post('/add', addBookHandler);
+app.post('/books', addBookHandler);
 
 
 
@@ -75,16 +75,16 @@ function viewHandler(request, response) {
 }
 
 function addBookHandler(request, response) {
-  const sqlAdd = 'INSERT INTO books (img, title, author, descrip)VALUES ($1, $2, $3, $4)RETURNING *';
-  const params = [request.body.img, request.body.title, request.body.author, request.body.descrip];
-  client.query(sqlAdd, params)
-    .then(results => {
-      let addBook = results.rows[0];
-      response.redirect('pages/book/form', {
-        books: addBook
-      });
-
-    })
+  const sqlAdd = `INSERT INTO books (author, title, isbn, img, descrip) VALUES ($1, $2, $3, $4, $5) RETURNING *`;
+    const params = [request.body.author, request.body.title, request.body.isbn, request.body.img, request.body.descrip];
+  console.log('params', params);
+   client.query(sqlAdd, params)
+  .then(results => {
+    let addBook = results.rows[0].id;
+      response.redirect(`/books/${addBook}`);
+    
+      })
+    
     .catch(error => {
       console.log(error);
     });
