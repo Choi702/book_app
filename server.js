@@ -1,20 +1,20 @@
 'use strict'
 
-require('dotenv').config();  //first
 
-//bring in our dependencies   //second
-
+// DEPENDENCIES
 const express = require('express');
 const superagent = require('superagent');
 const cors = require('cors');
 const { request, response } = require('express');
 const pg = require('pg');
 
+// ENVIRONMENT
+require('dotenv').config();
 
-//create our Port 
+// CREATE PORT
 const PORT = process.env.PORT || 3000;
 
-//start express application
+// APPLICATION SETUP
 const app = express();
 app.use(cors());
 
@@ -30,14 +30,23 @@ app.use(express.urlencoded({ extended: true }));
 
 
 //connect to our database
-const client = new pg.Client(process.env.DATABASE_URL);
+// const client = new pg.Client(process.env.DATABASE_URL);
+
+const client = new pg.Client({
+  host: 'localhost',
+  port: 5432,
+  user: 'klace',
+  password: 'gen2klr',
+  database: 'books'
+});
+
 client.connect();
 client.on('error', err => console.error(err));
 
 
 //ROUTES
-app.get('/error', errorHandler);
 app.get('/', homeHandler);
+app.get('/error', errorHandler);
 app.get('/books/:id', viewHandler);
 app.post('/books', addBookHandler);
 
@@ -49,7 +58,6 @@ function errorHandler(request, response, error) {
   console.log('Watching for errors on server.js');
 }
 
-//refactored route
 function homeHandler(request, response) {
   const sql = 'SELECT * FROM books;';
   client.query(sql)
@@ -57,9 +65,7 @@ function homeHandler(request, response) {
       let bookQuery = results.rows;
       response.render('pages/index', { books: bookQuery });
     })
-    .catch(error => {
-      console.log(error);
-    });
+    .catch(error => {errorHandler(request, response, error);});
 }
 
 function viewHandler(request, response) {
@@ -69,31 +75,20 @@ function viewHandler(request, response) {
       let bookView = results.rows[0];
       response.render('pages/searches/detail', { books: [bookView] });
     })
-    .catch(error => {
-      console.log(error);
-    });
+    .catch(error => {errorHandler(request, response, error);});
 }
 
 function addBookHandler(request, response) {
   const sqlAdd = `INSERT INTO books (author, title, isbn, img, descrip) VALUES ($1, $2, $3, $4, $5) RETURNING *`;
-    const params = [request.body.author, request.body.title, request.body.isbn, request.body.img, request.body.descrip];
+  const params = [request.body.author, request.body.title, request.body.isbn, request.body.img, request.body.descrip];
   console.log('params', params);
-   client.query(sqlAdd, params)
-  .then(results => {
-    let addBook = results.rows[0].id;
+  client.query(sqlAdd, params)
+    .then(results => {
+      let addBook = results.rows[0].id;
       response.redirect(`/books/${addBook}`);
-    
-      })
-    
-    .catch(error => {
-      console.log(error);
-    });
+    })
+    .catch(error => {errorHandler(request, response, error);});
 }
-
-
-
-
-
 
 
 // search new.ejs route
@@ -110,7 +105,6 @@ app.post('/searches', (request, response) => {
   } else {
     selection += `:${search}`;
   }
-  // console.log('selection', selection);
 
   const URL = `https://www.googleapis.com/books/v1/volumes?q=${selection}`;
   console.log('URL', URL);
@@ -121,10 +115,7 @@ app.post('/searches', (request, response) => {
       // console.log('searchOutput', searchOutput);
       response.status(200).render('pages/searches/show', { books: searchOutput });
     })
-    .catch(error => {
-      response.status(500).render('pages/error');
-    });
-
+    .catch(error => {errorHandler(request, response, error);});
 });
 
 //constructor function for Book
