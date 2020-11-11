@@ -40,6 +40,8 @@ app.get('/error', errorHandler);
 app.get('/', homeHandler);
 app.get('/books/:id', viewHandler);
 app.post('/books', addBookHandler);
+// app.put('/edit/', updateHandler);
+
 
 
 
@@ -77,7 +79,7 @@ function viewHandler(request, response) {
 function addBookHandler(request, response) {
   const sqlAdd = `INSERT INTO books (author, title, isbn, img, descrip) VALUES ($1, $2, $3, $4, $5) RETURNING *`;
     const params = [request.body.author, request.body.title, request.body.isbn, request.body.img, request.body.descrip];
-  console.log('params', params);
+  // console.log('params', params);
    client.query(sqlAdd, params)
   .then(results => {
     let addBook = results.rows[0].id;
@@ -90,11 +92,9 @@ function addBookHandler(request, response) {
     });
 }
 
-
-
-
-
-
+// function updateHandler(request, response){
+//   'UPDATE books SET author = 1
+// }
 
 // search new.ejs route
 app.get('/searches/new', (request, response) => {
@@ -141,4 +141,5 @@ function Book(obj) {
 app.listen(PORT, () => {
   console.log(`Server is now listening on port ${PORT}`);
 });
+
 
