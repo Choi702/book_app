@@ -98,6 +98,7 @@ app.post('/searches', (request, response) => {
 //
 function errorHandler(request, response, error) {
   response.status(500).render('pages/error');
+  console.log(error);
 }
 
 // CONSTRUCTOR
