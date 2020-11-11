@@ -177,16 +177,16 @@ Actual time needed to complete: not done with feature 3
 
 
 
-lab 12 feature 3 11/9
-Number and name of feature: feature 3 forms for views
 
-Estimate of time needed to complete: 2 hours
+Number and name of feature:
 
-Start time: 3:35pm
+Estimate of time needed to complete: 
 
-Finish time: 8:42pm
+Start time: 
 
-Actual time needed to complete: 5 hour 7 minutes feature 3 complete
+Finish time: 
+
+Actual time needed to complete: 
 
 
 
