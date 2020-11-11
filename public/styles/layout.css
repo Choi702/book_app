@@ -17,11 +17,11 @@ h1{
     color: #f8f4e3;
     background-color: #BF3100;
 }
-p {
+h3 {
     color: #FFB30F;
 }
-.searchedFlex{
-    border: 2px dashed #79745C;
+p{
+    color: #FFB30F;
 }
 img {
     border: #BF3100 solid 3px;
@@ -44,8 +44,8 @@ html {
     /* filter: invert(1); */
 }
 body {
-    width: 100%;
-    /* background-color: aqua; */
+    width: 500px;
+    text-align: center;
 }
 form {
     height: 6.25em;
