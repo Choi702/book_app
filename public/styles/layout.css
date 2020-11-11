@@ -3,7 +3,6 @@ html {
 }
 body {
     background-color: #0d1321ff;
-    
 }
 form {
     background-color: #FFB30F;
@@ -15,7 +14,7 @@ header {
     background-color: #BF3100;
 }
 h1{
-    color: yellowgreen;
+    color: #f8f4e3;
     background-color: #BF3100;
 }
 h3 {
@@ -45,13 +44,8 @@ html {
     /* filter: invert(1); */
 }
 body {
-
-    width: 70%;
-    /* background-color: aqua; */
-
     width: 500px;
     text-align: center;
-
 }
 form {
     height: 6.25em;
@@ -73,19 +67,5 @@ h2{
 .searchedFlex{
     text-align: center;
     padding: 5px;
-}
-header{
-    text-align: center;
-    padding: 5px;   
-}
-
-h3{
-    color: white;
-}
-section{
-    color: greenyellow;
-}
-section, form, button {
-    text-align: center;
 }
 }
