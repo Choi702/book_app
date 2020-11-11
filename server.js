@@ -35,6 +35,14 @@ client.on('error', err => console.error(err));
 //
 app.get('/error', errorHandler);
 
+app.get('/', homeHandler);
+app.get('/books/:id', viewHandler);
+app.post('/books', addBookHandler);
+// app.put('/edit/', updateHandler);
+
+
+
+
 app.get('/', (request, response) => {
   // *********** home route being handled by errors currently - error handling route wasn't correct before refactoring to callbacks
   const sql = 'SELECT * FROM books;';
@@ -69,7 +77,37 @@ app.get('/books/:id', (request, response) => {
       let bookView = results.rows[0];
       response.render('pages/searches/detail', { books: [bookView] });
     })
-    .catch(error => {errorHandler(request, response, error);});
+
+    .catch(error => {
+      console.log(error);
+    });
+}
+
+function addBookHandler(request, response) {
+  const sqlAdd = `INSERT INTO books (author, title, isbn, img, descrip) VALUES ($1, $2, $3, $4, $5) RETURNING *`;
+    const params = [request.body.author, request.body.title, request.body.isbn, request.body.img, request.body.descrip];
+  // console.log('params', params);
+   client.query(sqlAdd, params)
+  .then(results => {
+    let addBook = results.rows[0].id;
+      response.redirect(`/books/${addBook}`);
+    
+      })
+    
+    .catch(error => {
+      console.log(error);
+    });
+}
+
+// function updateHandler(request, response){
+//   'UPDATE books SET author = 1
+// }
+
+// search new.ejs route
+app.get('/searches/new', (request, response) => {
+  response.render('pages/searches/new');
+
+
 });
 
 app.post('/searches', (request, response) => {
@@ -115,3 +153,4 @@ function Book(obj) {
 app.listen(PORT, () => {
   console.log(`Server is now listening on port ${PORT}`);
 });
+

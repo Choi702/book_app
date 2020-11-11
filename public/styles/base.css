@@ -9,6 +9,7 @@ html {
 }
 body {
     width: 30em;
+  
 }
 form {
     height: 6.25em;
@@ -26,7 +27,14 @@ h2{
     color: #FFB30F;
     font-size: 1.5em;
 }
-.searchedFlex{
+/* .searchedFlex{
     text-align: center;
     padding: 5px;
+
+
+} */
+section{
+    text-align: center;
+    padding: 5px;   
 }
+
