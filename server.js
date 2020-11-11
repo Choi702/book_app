@@ -27,7 +27,6 @@ app.use(express.urlencoded({ extended: true }));
 
 //CONNECT TO DATABASE*
 const client = new pg.Client(process.env.DATABASE_URL);
-//
 client.connect();
 client.on('error', err => console.error(err));
 
@@ -73,9 +72,9 @@ app.get('/books/:id', (request, response) => {
     .catch(error => {errorHandler(request, response, error);});
 });
 
-app.post('/searches/new', (request, response) => {
+app.post('/searches', (request, response) => {
   const search = request.body.title1;
-  const authorTitle = request.body.search_query;
+  // const authorTitle = request.body.search_query;
   let selection = request.body.search_query;
   if (selection === 'title') {
     selection += `:${search}`;
