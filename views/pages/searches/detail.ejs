@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <%- include('../layout/head') %>
-</head>
+
+  <%- include('../../layout/head') %>
+
 <body>
-  <%- include('../layout/header') %>
+  <%- include('../../layout/header') %>
   <% books.forEach(book => { %>
   <%- include('../book/details', {book: book}) %>
   <% }) %>
